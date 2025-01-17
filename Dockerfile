@@ -21,7 +21,10 @@ RUN pip install --upgrade pip && \
     pip install -r /builder/requirements.txt
 
 # Download VAD model
-RUN python -c "import whisperx; from whisperx.vad import load_vad_model; load_vad_model('cpu')"
+# RUN python -c "import whisperx; from whisperx.vad import load_vad_model; load_vad_model('cpu')"
+
+# Debug the whisperx installation and structure
+RUN python -c "import whisperx; print(dir(whisperx)); import inspect; print(inspect.getfile(whisperx))"
 
 # Copy the rest of the builder files
 COPY builder /builder
